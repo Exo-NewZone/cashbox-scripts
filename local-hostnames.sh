@@ -8,10 +8,10 @@ Options:
 
 
 HOSTNAME="""
-10.10.100.23    sale-api.newzone.com.py
-10.10.100.23    products-api.newzone.com.py
-10.10.100.23    cashbox-api.newzone.com.py
-10.10.100.23    cashbox-payment-methods-api.newzone.com.py
+10.10.100.131    sale-api.newzone.com.py
+10.10.100.131    products-api.newzone.com.py
+10.10.100.131    cashbox-api.newzone.com.py
+10.10.100.131    cashbox-payment-methods-api.newzone.com.py
 """
 HOST_FILE="/etc/hosts"
 

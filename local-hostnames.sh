@@ -13,7 +13,7 @@ HOSTNAME="""
 10.10.100.23    cashbox-api.newzone.com.py
 10.10.100.23    cashbox-payment-methods-api.newzone.com.py
 """
-HOST_FILE="/etc/host"
+HOST_FILE="/etc/hosts"
 
 print_usage() {
   echo "$HELP"

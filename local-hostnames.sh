@@ -1,9 +1,10 @@
 #!/bin/bash
 HELP="""
-Usage: $0 [-f] [-h]
+Usage: $0 [-f] [-s] [-h]
 Options:
   -h    Show this help message
   -f    Turn off local hostnames
+  -s    Show whether local hostnames are applied
 """
 
 
@@ -43,9 +44,35 @@ on() {
   print_host_file
 }
 
-while getopts "fh" opt; do
+# Reports whether every HOSTNAME entry is present in HOST_FILE
+status() {
+  local total=0 found=0 line norm
+  local hosts
+  hosts=$(sed -E 's/^[[:space:]]+|[[:space:]]+$//g; s/[[:space:]]+/ /g' "$HOST_FILE")
+  while IFS= read -r line; do
+    norm=$(printf '%s' "$line" | sed -E 's/^[[:space:]]+|[[:space:]]+$//g; s/[[:space:]]+/ /g')
+    [ -z "$norm" ] && continue
+    total=$((total + 1))
+    if printf '%s\n' "$hosts" | grep -qxF -- "$norm"; then
+      found=$((found + 1))
+    fi
+  done <<< "$HOSTNAME"
+
+  if [ "$found" -eq "$total" ]; then
+    echo "Applied ($found/$total)"
+    return 0
+  elif [ "$found" -eq 0 ]; then
+    echo "Not applied (0/$total)"
+  else
+    echo "Partially applied ($found/$total)"
+  fi
+  return 1
+}
+
+while getopts "fhs" opt; do
   case "$opt" in
     f) off; exit 0 ;;            # -f sin valor
+    s) status; exit $? ;;
     h) print_usage; exit 1 ;;
   esac
 done

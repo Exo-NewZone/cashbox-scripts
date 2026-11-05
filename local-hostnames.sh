@@ -13,6 +13,18 @@ HOSTNAME="""
 10.10.100.131    products-api.newzone.com.py
 10.10.100.131    cashbox-api.newzone.com.py
 10.10.100.131    cashbox-payment-methods-api.newzone.com.py
+10.10.100.23     cash.newzoneimportados.com 
+10.10.100.23     exchange.newzoneimportados.com 
+10.10.100.23     master.newzoneimportados.com
+10.10.100.23     price-api.newzoneimportados.com 
+10.10.100.23     cash-sale-api.newzoneimportados.com 
+10.10.100.23     cash-socket.newzoneimportados.com 
+10.10.100.23     cash-bill-count.newzoneimportados.com 
+10.10.100.23     cashbox-clients.newzoneimportados.com 
+10.10.100.23     cashbox-clients.newzone.com.py 
+10.10.100.23     bancard-pos.newzoneimportados.com 
+10.10.100.23     payment-manager-api.newzoneimportados.com
+10.10.100.23     price-api-v2.newzoneimportados.com
 """
 HOST_FILE="/etc/hosts"
 
@@ -74,6 +86,7 @@ while getopts "fhs" opt; do
     f) off; exit 0 ;;            # -f sin valor
     s) status; exit $? ;;
     h) print_usage; exit 1 ;;
+    *) print_usage; exit 1 ;;  # Handle unknown options
   esac
 done
 

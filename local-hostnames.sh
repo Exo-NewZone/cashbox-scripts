@@ -71,12 +71,12 @@ status() {
   done <<< "$HOSTNAME"
 
   if [ "$found" -eq "$total" ]; then
-    echo "Applied ($found/$total)"
+    echo "$found/$total"
     return 0
   elif [ "$found" -eq 0 ]; then
-    echo "Not applied (0/$total)"
+    echo "0/$total"
   else
-    echo "Partially applied ($found/$total)"
+    echo "$found/$total"
   fi
   return 1
 }
